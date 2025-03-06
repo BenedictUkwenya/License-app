@@ -1,20 +1,18 @@
 import dotenv from "dotenv";
 dotenv.config();
-console.log("Dotenv loaded:", process.env);
-require('./jobs/licenseReminder'); // This starts the cron job
-const express = require('express');
-const path = require('path')
-const mongoose = require('mongoose');
-const cors = require('cors');
-const userRoutes = require("./routes/userRoutes.js")
-const licenseRoutes = require("./routes/licenseRoutes.js");
-
-const connectMongoDB = require('./db/connectdb');
+//console.log("Dotenv loaded:", process.env);
+import './jobs/licenseReminder.js'; // This starts the cron job
+import express from 'express';
+import path from 'path';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import userRoutes from "./routes/userRoutes.js";
+import licenseRoutes from "./routes/licenseRoutes.js";
+import connectMongoDB from './db/connectdb.js';
 
 const app = express();
 console.log("JWT SECRET:", process.env.JWT_SECRET);
 
-//const __dirname = path.resolve()
 // Middleware
 app.use(express.json()); // Allow JSON requests
 app.use(cors()); // Enable CORS
@@ -30,7 +28,6 @@ if(process.env.NODE_ENV === "production"){
 app.get('/', (req, res) => {
   res.send('Licenses API is running...');
 });
-
 
 // Start Server
 const PORT = process.env.PORT || 5000;

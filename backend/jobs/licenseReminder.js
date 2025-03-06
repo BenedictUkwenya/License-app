@@ -1,9 +1,10 @@
-const cron = require('node-cron');
-const License = require('../models/license'); // Adjust path if needed
-const User = require('../models/User'); // Adjust path if needed
-const nodemailer = require('nodemailer');
-const mongoose = require('mongoose');
-require('dotenv').config(); // Ensure you have a .env file with EMAIL_USER and EMAIL_PASS
+import cron from 'node-cron';
+import License from '../models/license.js'; // Adjust path if needed
+import User from '../models/User.js'; // Adjust path if needed
+import nodemailer from 'nodemailer';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config(); // Ensure you have a .env file with EMAIL_USER and EMAIL_PASS
 
 // Connect to MongoDB if not already connected
 mongoose.connect(process.env.MONGO_URI, {

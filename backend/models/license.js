@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const LicenseSchema = new mongoose.Schema({
     user: { 
@@ -16,4 +16,4 @@ const LicenseSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model("License", LicenseSchema);
+export default mongoose.model("License", LicenseSchema);

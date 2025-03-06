@@ -1,4 +1,4 @@
-const License = require("../models/license");
+import License from "../models/license.js";
 
 // CREATE A NEW LICENSE
 const createLicense = async (req, res) => {
@@ -82,4 +82,4 @@ const deleteLicense = async (req, res) => {
     }
 };
 
-module.exports = { createLicense, getLicenses, updateLicense, deleteLicense };
+export { createLicense, getLicenses, updateLicense, deleteLicense };

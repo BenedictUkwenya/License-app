@@ -1,11 +1,11 @@
-const express = require("express");
-const {
+import express from "express";
+import {
     createLicense,
     getLicenses,
     updateLicense,
     deleteLicense
-} = require("../controller/licenseController");
-const authMiddleware = require("../middleware/authMiddleware");
+} from "../controller/licenseController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.get("/", authMiddleware, getLicenses);
 router.put("/:id", authMiddleware, updateLicense);
 router.delete("/:id", authMiddleware, deleteLicense);
 
-module.exports = router;
+export default router;

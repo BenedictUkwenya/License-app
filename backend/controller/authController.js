@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('../models/User');
-const authMiddleware = require('../middleware/authMiddleware');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import User from '../models/User.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 // Function to generate a JWT
 const generateToken = (user) => {
@@ -77,6 +77,4 @@ const login = async (req, res) => {
     }
 };
 
-// Middleware to verify JWT token
-
-module.exports = { register, login, generateToken };
+export { register, login, generateToken };

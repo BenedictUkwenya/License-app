@@ -1,4 +1,5 @@
-require('dotenv').config();
+require("dotenv").config();
+console.log("Dotenv loaded:", process.env);
 require('./jobs/licenseReminder'); // This starts the cron job
 const express = require('express');
 const path = require('path')

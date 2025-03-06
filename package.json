@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "type": "commonjs",
   "main": "index.js",
-"scripts": {
-  "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm start\"",
-  "build": "npm install --prefix frontend && npm run build --prefix frontend",
-  "start": "concurrently \"cd backend && node server.js\" \"cd frontend && npm start\""
-},
-
+  "scripts": {
+    "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm start\"",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "concurrently \"cd backend && node server.js\" \"cd frontend && npm start\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

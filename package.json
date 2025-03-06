@@ -1,0 +1,48 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+"scripts": {
+  "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm start\"",
+  "build": "npm install --prefix frontend && npm run build --prefix frontend",
+  "start": "concurrently \"cd backend && node server.js\" \"cd frontend && npm start\""
+},
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@chakra-ui/react": "^2.10.6",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "backend": "file:..",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "framer-motion": "^12.4.10",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.11.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "nodemon": "^3.1.9",
+    "vite": "^6.2.0"
+  }
+}

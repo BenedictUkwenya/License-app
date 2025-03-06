@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Input, Button, VStack, Text, Heading, FormControl, FormLabel } from "@chakra-ui/react"; // Import Chakra UI components
+import { Box, Input, Button, VStack, Text, Heading, FormControl, FormLabel, useToast } from "@chakra-ui/react";
 
 const Signup = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const toast = useToast(); // Initialize toast
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,11 +17,17 @@ const Signup = () => {
       return;
     }
 
+    const userData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    };
+
     try {
-      const response = await fetch("http://localhost:5000/api/users/signup", {
+      const response = await fetch("http://localhost:5000/api/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: formData.name, email: formData.email, password: formData.password }),
+        body: JSON.stringify(userData),
       });
 
       const data = await response.json();
@@ -28,9 +35,18 @@ const Signup = () => {
       if (!response.ok) {
         setError(data.message || "Signup failed. Please try again.");
       } else {
-        navigate("/dashboard");
+        toast({
+          title: "Signup Successful",
+          description: "You have successfully signed up. Please login.",
+          status: "success",
+          duration: 3000, // Toast duration (3 seconds)
+          isClosable: true,
+        });
+
+        setTimeout(() => navigate("/"), 2000); // Delay navigation for better UX
       }
     } catch (err) {
+      console.error("Error:", err);
       setError("Something went wrong. Please try again.");
     }
   };

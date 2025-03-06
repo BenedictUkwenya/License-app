@@ -1,4 +1,5 @@
-
+import dotenv from "dotenv";
+dotenv.config();
 //console.log("Dotenv loaded:", process.env);
 import './jobs/licenseReminder.js'; // This starts the cron job
 import express from 'express';
@@ -8,8 +9,7 @@ import cors from 'cors';
 import userRoutes from "./routes/userRoutes.js";
 import licenseRoutes from "./routes/licenseRoutes.js";
 import connectMongoDB from './db/connectdb.js';
-import dotenv from "dotenv";
-dotenv.config();
+
 const app = express();
 console.log("JWT SECRET:", process.env.JWT_SECRET);
 

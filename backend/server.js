@@ -9,7 +9,7 @@ import cors from 'cors';
 import userRoutes from "./routes/userRoutes.js";
 import licenseRoutes from "./routes/licenseRoutes.js";
 import connectMongoDB from './db/connectdb.js';
-
+//npm install --prefix frontend && npm run build --prefix frontend
 const app = express();
 console.log("JWT SECRET:", process.env.JWT_SECRET);
 

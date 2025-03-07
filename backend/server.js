@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
+  console.log("i have been reached")
   res.status(200).json({ message: "Server is running" });
 });
 

@@ -35,6 +35,11 @@ app.get('/', (req, res) => {
   res.send('Licenses API is running...');
 });
 
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ message: "Server is running" });
+});
+
+
 // Start Server Only After Database Connection is Successful
 const PORT = process.env.PORT || 5000;
 console.log(process.env.MONGO_URI);

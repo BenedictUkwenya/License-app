@@ -7,13 +7,12 @@ import path from 'path';
 import cors from 'cors';
 import userRoutes from "./routes/userRoutes.js";
 import licenseRoutes from "./routes/licenseRoutes.js";
-import connectMongoDB from './db/connectdb.js';
+import {connectDB} from './db/connectdb.js';
 
 //const __filename = fileURLToPath(import.meta.url);
 //const __dirname = path.dirname(__filename);
 
 const app = express();
-console.log("JWT SECRET:", process.env.JWT_SECRET);
 
 const __dirname = path.resolve();
 // Middleware
@@ -24,11 +23,11 @@ app.use("/api/licenses", licenseRoutes);
 
 // Serve Frontend in Production
 
-if (process.env.NODE_ENV === "production") {
+if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
-  });
+  app.get("*", (req, res) =>{
+      res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+  })
 }
 
 // Test Route
@@ -36,29 +35,10 @@ app.get('/', (req, res) => {
   res.send('Licenses API is running...');
 });
 
-app.get('/health', (req, res) => {
-  const dbState = mongoose.connection.readyState; // 1 means connected
-  res.json({ 
-    database: dbState === 1 ? "Connected" : "Not Connected",
-    stateCode: dbState // Useful for debugging (0: disconnected, 1: connected, 2: connecting, 3: disconnecting)
-  });
-});
 // Start Server Only After Database Connection is Successful
 const PORT = process.env.PORT || 5000;
-
-const startServer = async () => {
-  try {
-    await connectMongoDB();  // Wait until MongoDB connects
-    console.log("MongoDB connected successfully!");
-    
-    app.listen(PORT, () => {
-      console.log(`Server running at port ${PORT}`);
-    });
-
-  } catch (error) {
-    console.error("Database connection failed. Server not starting...", error);
-    process.exit(1);  // Exit if DB connection fails
-  }
-};
-
-startServer();
+console.log(process.env.MONGO_URI);
+app.listen(PORT, ()=>{
+    connectDB();
+    console.log(`Server running at ${PORT}`);
+})

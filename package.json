@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm start\"",
-    "build": "npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "cd backend && npm install && node server.js \"cd frontend && npm start\""
-  },
+    "build": "cd frontend && npm install && npm run build",
+    "start": "npm install --prefix backend && npm install --prefix frontend && concurrently \"cd backend && node server.js\" \"cd frontend && npm start\""
+   },
   "keywords": [],
   "author": "",
   "license": "ISC",

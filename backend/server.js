@@ -45,8 +45,9 @@ app.get('/api/health', (req, res) => {
 
 // Start Server Only After Database Connection is Successful
 const PORT = process.env.PORT || 5000;
-console.log(process.env.MONGO_URI);
-app.listen(PORT, ()=>{
+console.log(`🚀 Server trying to start on port: ${PORT}`);
+
+app.listen(PORT, '0.0.0.0', () => {
     connectDB();
-    console.log(`Server running at ${PORT}`);
+    console.log(`✅ Server started on port ${PORT}`);
 })

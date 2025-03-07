@@ -16,7 +16,9 @@ const app = express();
 
 const __dirname = path.resolve();
 // Middleware
-app.use(express.json()); // Allow JSON requests
+app.use(express.json());  // Add this before your routes
+app.use(express.urlencoded({ extended: true })); // Just in case
+ // Allow JSON requests
 app.use(cors()); // Enable CORS
 app.use('/api/users', userRoutes);
 app.use("/api/licenses", licenseRoutes);

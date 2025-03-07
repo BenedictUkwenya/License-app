@@ -36,6 +36,13 @@ app.get('/', (req, res) => {
   res.send('Licenses API is running...');
 });
 
+app.get('/health', (req, res) => {
+  const dbState = mongoose.connection.readyState; // 1 means connected
+  res.json({ 
+    database: dbState === 1 ? "Connected" : "Not Connected",
+    stateCode: dbState // Useful for debugging (0: disconnected, 1: connected, 2: connecting, 3: disconnecting)
+  });
+});
 // Start Server Only After Database Connection is Successful
 const PORT = process.env.PORT || 5000;
 

@@ -15,9 +15,9 @@ const Dashboard = () => {
     setError("");
     setLoading(true);
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  ;
       const token = localStorage.getItem("token");
-      const response = await fetch(`${API_BASE_URL}/api/licenses`, {
+      const response = await fetch("/api/licenses", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Dashboard = () => {
   const deleteLicense = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/licenses/${id}`, {
+      const response = await fetch(`api/licenses/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
